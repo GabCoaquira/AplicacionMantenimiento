@@ -1,0 +1,98 @@
+package com.unsa.tickets.database;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DatabaseHelper extends SQLiteOpenHelper {
+
+    private static final String DATABASE_NAME = "tickets_unsa.db";
+    private static final int DATABASE_VERSION = 1;
+    public static final String TABLA_FACULTADES = "facultades";
+    public static final String TABLA_PROGRAMAS = "programas";
+    public static final String TABLA_ESTUDIANTES = "estudiantes";
+    public static final String TABLA_TICKETS = "tickets";
+
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE " + TABLA_FACULTADES + " (" +
+                "codigo TEXT PRIMARY KEY, " +
+                "nombre TEXT NOT NULL, " +
+                "estado TEXT DEFAULT 'A')");
+
+        db.execSQL("CREATE TABLE " + TABLA_PROGRAMAS + " (" +
+                "codigo TEXT PRIMARY KEY, " +
+                "nombre TEXT NOT NULL, " +
+                "estado TEXT DEFAULT 'A')");
+
+        db.execSQL("CREATE TABLE " + TABLA_ESTUDIANTES + " (" +
+                "codigo TEXT PRIMARY KEY, " +
+                "nombre TEXT NOT NULL, " +
+                "estado TEXT DEFAULT 'A')");
+
+        db.execSQL("CREATE TABLE " + TABLA_TICKETS + " (" +
+                "codigo TEXT PRIMARY KEY, " +
+                "fecha TEXT NOT NULL, " +
+                "cod_estudiante TEXT NOT NULL, " +
+                "cod_facultad TEXT NOT NULL, " +
+                "cod_programa TEXT NOT NULL, " +
+                "descripcion TEXT, " +
+                "estado TEXT DEFAULT 'A', " +
+                "FOREIGN KEY(cod_estudiante) REFERENCES " + TABLA_ESTUDIANTES + "(codigo), " +
+                "FOREIGN KEY(cod_facultad) REFERENCES " + TABLA_FACULTADES + "(codigo), " +
+                "FOREIGN KEY(cod_programa) REFERENCES " + TABLA_PROGRAMAS + "(codigo))");
+
+        cargarDatosIniciales(db);
+    }
+
+    private void cargarDatosIniciales(SQLiteDatabase db) {
+        // Facultades de prueba
+        db.execSQL("INSERT INTO " + TABLA_FACULTADES + " VALUES ('017', 'Ingeniería de Producción y Servicios', 'A')");
+        db.execSQL("INSERT INTO " + TABLA_FACULTADES + " VALUES ('018', 'Educación', 'A')");
+        db.execSQL("INSERT INTO " + TABLA_FACULTADES + " VALUES ('020', 'Ciencias Naturales y Formales', 'I')");
+
+        // Programas profesionales de prueba
+        db.execSQL("INSERT INTO " + TABLA_PROGRAMAS + " VALUES ('071', 'Ingeniería de Sistemas', 'A')");
+        db.execSQL("INSERT INTO " + TABLA_PROGRAMAS + " VALUES ('072', 'Ingeniería Electrónica', 'A')");
+        db.execSQL("INSERT INTO " + TABLA_PROGRAMAS + " VALUES ('070', 'Ingeniería Industrial', 'A')");
+
+        // Estudiantes de prueba
+        db.execSQL("INSERT INTO " + TABLA_ESTUDIANTES + " VALUES ('101', 'Coaquira Suyo, Gabriela Dayana', 'A')");
+        db.execSQL("INSERT INTO " + TABLA_ESTUDIANTES + " VALUES ('102', 'Llacma Quispe, Kevin Andree', 'A')");
+        db.execSQL("INSERT INTO " + TABLA_ESTUDIANTES + " VALUES ('103', 'Velarde Saldaña, Jhossep Fabritzio', 'A')");
+        db.execSQL("INSERT INTO " + TABLA_ESTUDIANTES + " VALUES ('104', 'Zeballos Perez, Juan Sergio', 'A')");
+
+        // Tickets de prueba
+        db.execSQL("INSERT INTO " + TABLA_TICKETS + " VALUES ('501', '20261118', '101', '017', '071', 'Entrega de constancia de matrícula', 'A')");
+        db.execSQL("INSERT INTO " + TABLA_TICKETS + " VALUES ('502', '20261118', '102', '017', '072', 'Solicitud de certificado de estudios', 'A')");
+    }
+
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLA_TICKETS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLA_ESTUDIANTES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLA_PROGRAMAS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLA_FACULTADES);
+        onCreate(db);
+    }
+
+    public boolean existeCodigo(String nombreTabla, String codigo) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT 1 FROM " + nombreTabla + " WHERE codigo = ?", new String[]{codigo});
+        boolean existe = cursor.moveToFirst();
+        cursor.close();
+        return existe;
+    }
+
+    public boolean cambiarEstadoRegistro(String nombreTabla, String codigo, String nuevoEstado) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("estado", nuevoEstado);
+        int filas = db.update(nombreTabla, values, "codigo = ?", new String[]{codigo});
+        return filas > 0;
+    }
+}
