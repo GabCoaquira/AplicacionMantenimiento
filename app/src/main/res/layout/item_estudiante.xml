@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="12dp"
+    android:paddingHorizontal="12dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tvItemCodigoEstudiante"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="101"
+        android:textStyle="bold"
+        android:textColor="#0D3B66"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tvItemNombreEstudiante"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Apellidos, Nombres"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:textSize="14sp"
+        android:paddingEnd="8dp" />
+
+    <TextView
+        android:id="@+id/tvItemEstadoEstudiante"
+        android:layout_width="32dp"
+        android:layout_height="26dp"
+        android:gravity="center"
+        android:text="A"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:background="#2E7D32" />
+
+</LinearLayout>
