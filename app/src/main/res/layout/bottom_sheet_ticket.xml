@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvTituloSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nuevo Ticket de Entrega"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#0D3B66"
+            android:layout_marginBottom="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Código (3 dígitos)"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/etCodigoTicket"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:hint="Ej. 505" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha (AAAAMMDD)"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/etFechaTicket"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:inputType="number"
+                    android:maxLength="8"
+                    android:hint="20261118" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estudiante"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/etEstudianteSeleccionado"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:clickable="false"
+                android:hint="Seleccione estudiante..."
+                android:textSize="13sp" />
+            <Button
+                android:id="@+id/btnBuscarEstudiante"
+                android:layout_width="48dp"
+                android:layout_height="44dp"
+                android:backgroundTint="#F57C00"
+                android:text="🔍"
+                android:padding="0dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Facultad"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/etFacultadSeleccionada"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:clickable="false"
+                android:hint="Seleccione facultad..."
+                android:textSize="13sp" />
+            <Button
+                android:id="@+id/btnBuscarFacultad"
+                android:layout_width="48dp"
+                android:layout_height="44dp"
+                android:backgroundTint="#F57C00"
+                android:text="🔍"
+                android:padding="0dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Programa Profesional"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/etProgramaSeleccionado"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:clickable="false"
+                android:hint="Seleccione programa..."
+                android:textSize="13sp" />
+            <Button
+                android:id="@+id/btnBuscarPrograma"
+                android:layout_width="48dp"
+                android:layout_height="44dp"
+                android:backgroundTint="#F57C00"
+                android:text="🔍"
+                android:padding="0dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción del Ticket"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp" />
+        <EditText
+            android:id="@+id/etDescripcionTicket"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="top|start"
+            android:hint="Ingrese detalle de la entrega..."
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvEstadoActualSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado: A (Activo)"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="14dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSheetGuardar"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:backgroundTint="#2E7D32"
+                android:text="Guardar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnSheetInactivar"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="4dp"
+                android:backgroundTint="#F57C00"
+                android:text="Inactivar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnSheetReactivar"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="4dp"
+                android:backgroundTint="#2E7D32"
+                android:text="Reactivar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnSheetEliminar"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="4dp"
+                android:backgroundTint="#C62828"
+                android:text="Eliminar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnSheetCancelar"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:backgroundTint="#616161"
+                android:text="Cancelar"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

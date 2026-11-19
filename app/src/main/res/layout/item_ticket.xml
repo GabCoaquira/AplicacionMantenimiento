@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="12dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tvItemCodigo"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="501"
+        android:textStyle="bold"
+        android:textColor="#0D3B66"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingEnd="8dp">
+
+        <TextView
+            android:id="@+id/tvItemEstudiante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Coaquira Suyo, Gabriela"
+            android:textStyle="bold"
+            android:textColor="#222222"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvItemDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20261118 • Entrega de constancia"
+            android:textColor="#666666"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvItemEstado"
+        android:layout_width="32dp"
+        android:layout_height="26dp"
+        android:gravity="center"
+        android:text="A"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:background="#2E7D32" />
+
+</LinearLayout>
