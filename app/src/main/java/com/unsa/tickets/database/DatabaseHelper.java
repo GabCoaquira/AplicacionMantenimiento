@@ -54,10 +54,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Facultades reales de la UNSA (P3)
         cargarFacultades(db);
 
-        // Programas profesionales de prueba
-        db.execSQL("INSERT INTO " + TABLA_PROGRAMAS + " VALUES ('071', 'Ingeniería de Sistemas', 'A')");
-        db.execSQL("INSERT INTO " + TABLA_PROGRAMAS + " VALUES ('072', 'Ingeniería Electrónica', 'A')");
-        db.execSQL("INSERT INTO " + TABLA_PROGRAMAS + " VALUES ('070', 'Ingeniería Industrial', 'A')");
+        // Programas profesionales de prueba (P4)
+        cargarProgramas(db);
 
         // Estudiantes de prueba
         db.execSQL("INSERT INTO " + TABLA_ESTUDIANTES + " VALUES ('101', 'Coaquira Suyo, Gabriela Dayana', 'A')");
@@ -68,6 +66,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Tickets de prueba
         db.execSQL("INSERT INTO " + TABLA_TICKETS + " VALUES ('501', '20261118', '101', '017', '071', 'Entrega de constancia de matrícula', 'A')");
         db.execSQL("INSERT INTO " + TABLA_TICKETS + " VALUES ('502', '20261118', '102', '017', '072', 'Solicitud de certificado de estudios', 'A')");
+    }
+
+    /**
+     * P4 - Programas profesionales de prueba.
+     * Códigos de 3 dígitos NO secuenciales. Se respetan 071 y 072 porque los
+     * tickets de prueba hacen referencia a ellos. Uno queda inactivo (I) para
+     * poder probar el filtro de inactivos.
+     */
+    private void cargarProgramas(SQLiteDatabase db) {
+        String[][] programas = {
+                {"070", "Ingeniería Industrial", "A"},
+                {"071", "Ingeniería de Sistemas", "A"},
+                {"072", "Ingeniería Electrónica", "A"},
+                {"074", "Ingeniería de Telecomunicaciones", "A"},
+                {"076", "Ingeniería Civil", "A"},
+                {"079", "Ingeniería Mecánica", "A"},
+                {"081", "Ingeniería Eléctrica", "A"},
+                {"084", "Ingeniería de Minas", "A"},
+                {"087", "Ingeniería Química", "A"},
+                {"090", "Derecho", "A"},
+                {"093", "Arquitectura", "A"},
+                {"096", "Contabilidad", "I"},
+        };
+        for (String[] p : programas) {
+            db.execSQL("INSERT INTO " + TABLA_PROGRAMAS + " (codigo, nombre, estado) VALUES (?, ?, ?)", p);
+        }
     }
 
     /**

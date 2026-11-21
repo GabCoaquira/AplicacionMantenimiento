@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvTituloSheetProg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nuevo Programa"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#0D3B66" />
+
+        <TextView
+            android:id="@+id/tvModoSheetProg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modo: ADICIÓN"
+            android:textSize="12sp"
+            android:textColor="#777777"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Código (3 dígitos ingresados manualmente)"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etCodigoProgramaSheet"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:maxLength="3"
+            android:hint="Ej. 071"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Programa Profesional"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etNombreProgramaSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:inputType="textCapWords"
+            android:maxLength="80"
+            android:hint="Ej. Ingeniería de Sistemas"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvEstadoActualSheetProg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado: A (Activo)"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="14dp" />
+
+        <!-- Solo se muestran los botones permitidos según el estado (se controla en Java) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSheetGuardarProg"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="2dp"
+                android:backgroundTint="#2E7D32"
+                android:paddingHorizontal="2dp"
+                android:text="Guardar"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnSheetInactivarProg"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="2dp"
+                android:backgroundTint="#F57C00"
+                android:paddingHorizontal="2dp"
+                android:text="Inactivar"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnSheetReactivarProg"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="2dp"
+                android:backgroundTint="#2E7D32"
+                android:paddingHorizontal="2dp"
+                android:text="Reactivar"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnSheetEliminarProg"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="2dp"
+                android:backgroundTint="#C62828"
+                android:paddingHorizontal="2dp"
+                android:text="Eliminar"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnSheetCancelarProg"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="2dp"
+                android:backgroundTint="#616161"
+                android:paddingHorizontal="2dp"
+                android:text="Cancelar"
+                android:textSize="12sp"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
