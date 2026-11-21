@@ -51,10 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void cargarDatosIniciales(SQLiteDatabase db) {
-        // Facultades de prueba
-        db.execSQL("INSERT INTO " + TABLA_FACULTADES + " VALUES ('017', 'Ingeniería de Producción y Servicios', 'A')");
-        db.execSQL("INSERT INTO " + TABLA_FACULTADES + " VALUES ('018', 'Educación', 'A')");
-        db.execSQL("INSERT INTO " + TABLA_FACULTADES + " VALUES ('020', 'Ciencias Naturales y Formales', 'I')");
+        // Facultades reales de la UNSA (P3)
+        cargarFacultades(db);
 
         // Programas profesionales de prueba
         db.execSQL("INSERT INTO " + TABLA_PROGRAMAS + " VALUES ('071', 'Ingeniería de Sistemas', 'A')");
@@ -70,6 +68,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Tickets de prueba
         db.execSQL("INSERT INTO " + TABLA_TICKETS + " VALUES ('501', '20261118', '101', '017', '071', 'Entrega de constancia de matrícula', 'A')");
         db.execSQL("INSERT INTO " + TABLA_TICKETS + " VALUES ('502', '20261118', '102', '017', '072', 'Solicitud de certificado de estudios', 'A')");
+    }
+
+    /**
+     * P3 - Facultades reales de la Universidad Nacional de San Agustín de Arequipa.
+     * Códigos de 3 dígitos NO secuenciales. Se respetan 017, 018 y 020 porque
+     * los tickets de prueba hacen referencia a ellos.
+     */
+    private void cargarFacultades(SQLiteDatabase db) {
+        String[][] facultades = {
+                {"011", "Administración", "A"},
+                {"012", "Agronomía", "A"},
+                {"013", "Arquitectura y Urbanismo", "A"},
+                {"014", "Ciencias Biológicas", "A"},
+                {"015", "Ciencias Contables y Financieras", "A"},
+                {"016", "Ciencias Histórico Sociales", "A"},
+                {"017", "Ingeniería de Producción y Servicios", "A"},
+                {"018", "Ciencias de la Educación", "A"},
+                {"020", "Ciencias Naturales y Formales", "I"},
+                {"021", "Derecho", "A"},
+                {"022", "Medicina", "A"},
+                {"024", "Economía", "A"},
+                {"025", "Enfermería", "A"},
+                {"027", "Filosofía y Humanidades", "A"},
+                {"030", "Geología, Geofísica y Minas", "A"},
+                {"032", "Ingeniería Civil", "A"},
+                {"035", "Ingeniería de Procesos", "A"},
+                {"038", "Psicología, Relaciones Industriales y Ciencias de la Comunicación", "A"},
+        };
+        for (String[] f : facultades) {
+            db.execSQL("INSERT INTO " + TABLA_FACULTADES + " (codigo, nombre, estado) VALUES (?, ?, ?)", f);
+        }
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

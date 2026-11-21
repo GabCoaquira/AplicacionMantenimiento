@@ -1,10 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0D3B66"
     tools:context=".facultades.FacultadesActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- ===== Cabecera ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#0D3B66"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:id="@+id/tvAtrasFacultades"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingEnd="12dp"
+            android:text="←"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mantenimiento Facultades"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- ===== Contenido (fondo claro) ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="#F4F6F9">
+
+        <!-- Buscador + filtros + orden -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="#FFFFFF"
+            android:elevation="2dp">
+
+            <EditText
+                android:id="@+id/etBuscarFacultad"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@android:drawable/edit_text"
+                android:hint="🔍 Buscar por código o nombre..."
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:paddingHorizontal="12dp"
+                android:textSize="14sp" />
+
+            <RadioGroup
+                android:id="@+id/rgFiltroEstadoFacultad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <RadioButton
+                    android:id="@+id/rbActivosFac"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Activos (A)"
+                    android:textSize="13sp" />
+
+                <RadioButton
+                    android:id="@+id/rbInactivosFac"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Inactivos (I)"
+                    android:textSize="13sp" />
+
+                <RadioButton
+                    android:id="@+id/rbEliminadosFac"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Eliminados (*)"
+                    android:textSize="13sp" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ordenar por:"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="13sp"
+                    android:layout_marginEnd="8dp" />
+
+                <RadioGroup
+                    android:id="@+id/rgOrdenFacultad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbOrdenCodigoFac"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Código"
+                        android:textSize="13sp" />
+
+                    <RadioButton
+                        android:id="@+id/rbOrdenNombreFac"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre"
+                        android:textSize="13sp" />
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Encabezado de la tabla -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#D9E4F5"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="Cód."
+                android:textStyle="bold"
+                android:textColor="#0D3B66" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nombre de la Facultad"
+                android:textStyle="bold"
+                android:textColor="#0D3B66" />
+
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="Estado"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#0D3B66" />
+        </LinearLayout>
+
+        <!-- Lista tabular -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ListView
+                android:id="@+id/lvFacultades"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#E0E0E0"
+                android:dividerHeight="1dp"
+                android:background="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvVacioFacultades"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="24dp"
+                android:text="No hay facultades con este filtro"
+                android:textColor="#888888"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvContadorFacultades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:text="0 registro(s)"
+            android:textColor="#777777"
+            android:textSize="12sp" />
+
+        <!-- Botones inferiores: Salir y Adicionar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:background="#FFFFFF"
+            android:elevation="6dp">
+
+            <Button
+                android:id="@+id/btnSalirFacultades"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:backgroundTint="#555555"
+                android:text="Salir"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="8dp" />
+
+            <Button
+                android:id="@+id/btnAdicionarFacultad"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:backgroundTint="#0D3B66"
+                android:text="+ Adicionar"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
